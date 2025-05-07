@@ -1,1 +1,1 @@
-# Crop-Disease-Identification-and-Classification
+# Crop Disease Identification and Classification
