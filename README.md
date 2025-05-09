@@ -35,11 +35,25 @@ The project uses the Five Crop Diseases Dataset from [Kaggle](https://www.kaggle
 - Model: EfficientNet-B3 (pretrained)
 - Modifications: Replaced the classifier head with a linear layer (1536 → 17)
 - Split: 80% training / 20% validation
+  #### - Training Set Distribution
+  
+  ![download](https://github.com/user-attachments/assets/993d84f3-ed26-4f20-91a7-140b8bd55e4c)
+  
+  #### - Validation Set Distribution
+  
+  ![download](https://github.com/user-attachments/assets/bc904c13-e929-4a63-b059-293477536f4c)
+  
 - Training Setup:
+
+![Screenshot (124)](https://github.com/user-attachments/assets/15f82d7f-cbb9-4cbb-8648-b41dc077bb23)
+
    - Epochs: 50 (Early stopping at epoch 29)
    - Cross-validation: 5 folds
    - Framework: PyTorch
 - Performance:
+
+![Screenshot (125)](https://github.com/user-attachments/assets/4fcc8920-f028-4a68-8f36-4fba75b1dcee)
+
    - Accuracy: 94.8%
    - Precision: 95.4%
    - Recall: 94.5%
@@ -47,8 +61,13 @@ The project uses the Five Crop Diseases Dataset from [Kaggle](https://www.kaggle
 - Evaluation Metrics:
    - Confusion matrix revealed minimal class-wise misclassification.
    - Classification report and confusion matrix visualizations were generated.
+  
+![download](https://github.com/user-attachments/assets/a71af97f-89da-49e5-a274-5d54fd4440ef)
 
 ## 🔹 Model Summary
+
+![Screenshot (123)](https://github.com/user-attachments/assets/5d0797e8-e5ca-4568-85c1-a762339e130e)
+
 - Total Parameters: 10,722,361
 - Input Size: 69.12 MB
 - Parameters Size: 42.54 MB
