@@ -1,4 +1,4 @@
-# Crop Disease Identification and Classification
+# Crop Disease Detection and Classification
 ## 🔹 Problem Statement
 Crop diseases are one of the key challenges faced by farmers between planting and harvesting. The cost of controlling these diseases increases significantly with time-early detection is essential to reduce losses and maximize yield. However, manually inspecting thousands of plants is infeasible, especially in large-scale farming operations. <br/>
 This project addresses the need for early, automated detection and classification of crop diseases using computer vision. An EfficientNet-B3-based model is developed to accurately identify common diseases in five major crops with high performance in terms of accuracy, precision, and recall, while maintaining robustness against: <br/>
