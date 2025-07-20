@@ -1,6 +1,4 @@
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/abdulmumeen-abdullahi/Crop-Disease-Identification-and-Classification/blob/main/crop-disease-detection.ipynb)
-
 # Crop Disease Detection and Classification
 ## 🔹 Problem Statement
 Crop diseases are one of the key challenges faced by farmers between planting and harvesting. The cost of controlling these diseases increases significantly with time-early detection is essential to reduce losses and maximize yield. However, manually inspecting thousands of plants is infeasible, especially in large-scale farming operations. <br/>
