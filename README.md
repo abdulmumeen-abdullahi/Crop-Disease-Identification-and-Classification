@@ -83,9 +83,3 @@ The project uses the Five Crop Diseases Dataset from [Kaggle](https://www.kaggle
 - Food Security: Enables farmers to proactively manage crop health, reducing crop loss.
 - Sustainable Agriculture: Promotes efficient use of agrochemicals.
 - Market Efficiency: Reduces post-harvest losses, benefiting supply chains and economies.
-
-================================================== <br/>
-Abdullahi Olalekan Abdulmumeen <br/>
-Data Scientist | Computer Vision Engineer <br/>
-olalekanabdulmumeen3@gmail.com <br/>
-+2347053053024
