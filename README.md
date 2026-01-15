@@ -1,85 +1,119 @@
+# 🌿 Crop Disease Detection Model (EfficientNet-B3)
 
-# Crop Disease Detection and Classification
-## 🔹 Problem Statement
-Crop diseases are one of the key challenges faced by farmers between planting and harvesting. The cost of controlling these diseases increases significantly with time-early detection is essential to reduce losses and maximize yield. However, manually inspecting thousands of plants is infeasible, especially in large-scale farming operations. <br/>
-This project addresses the need for early, automated detection and classification of crop diseases using computer vision. An EfficientNet-B3-based model is developed to accurately identify common diseases in five major crops with high performance in terms of accuracy, precision, and recall, while maintaining robustness against: <br/>
-- Lighting, pose, and background variations
-- Intra-class variability and inter-class similarity
-- Generalization to unseen environments
-The model identifies and classifies diseases in Wheat, Sugarcane, Corn, Rice, and Potato with over 94.8% accuracy, contributing toward smarter agriculture and aligning with the SDG 2 – Zero Hunger, SDG 12 – Responsible Consumption and Production, SDG 13 – Climate Action, etc  through AI.
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white) ![Hugging Face](https://img.shields.io/badge/Model_Weights-Hugging_Face-yellow?style=for-the-badge&logo=huggingface) ![Accuracy](https://img.shields.io/badge/Accuracy-94.8%25-success?style=for-the-badge) ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-## 🔹 Dataset Description
-The project uses the Five Crop Diseases Dataset from [Kaggle](https://www.kaggle.com/datasets/shubham2703/five-crop-diseases-dataset): <br/>
-- Total Images: 13,324
-- Classes: 17
-- Crops Covered: Corn, Potato, Rice, Wheat, Sugarcane
-### Breakdown by Crop:
-- Corn (3,852 images): Common Rust, Gray Leaf Spot, Northern Leaf Blight, Healthy
-   - Source: PlantVillage Dataset
-- Potato (2,152 images): Early Blight, Late Blight, Healthy
-   - Source: PlantVillage Dataset
-- Rice (4,078 images): Brown Spot, Leaf Blast, Neck Blast, Healthy
-   - Sources: Dhan-Shomadhan Dataset, "Rice Leafs" Dataset
-- Wheat (2,942 images): Yellow Rust, Brown Rust, Healthy
-   - Source: "Wheat Disease Detection" Dataset from Kaggle
-- Sugarcane (300 images): Red Rot, Bacterial Blight, Healthy
-   - Source: "Sugarcane Disease Dataset" from Kaggle
+## 📋 Executive Summary
+This repository contains the training pipeline and inference logic for a **computer vision model** designed to detect 17 different crop diseases across 5 major food crops (Wheat, Sugarcane, Corn, Rice, Potato).
 
-## 🔹 Methodology
-### 1. Data Preprocessing
-- Loaded and organized dataset using ImageFolder.
-- Displayed sample images and performed class-wise image counting.
-- Computed dataset mean and standard deviation for normalization.
-- Applied data augmentation (training set only) and normalization.
-- Validation set was normalized without augmentation.
-### 2. Model Training & Evaluation
-- Model: EfficientNet-B3 (pretrained)
-- Modifications: Replaced the classifier head with a linear layer (1536 → 17)
-- Split: 80% training / 20% validation
-  #### - Training Set Distribution
-  
-  ![download](https://github.com/user-attachments/assets/993d84f3-ed26-4f20-91a7-140b8bd55e4c)
-  
-  #### - Validation Set Distribution
-  
-  ![download](https://github.com/user-attachments/assets/bc904c13-e929-4a63-b059-293477536f4c)
-  
-- Training Setup:
+Built on the **EfficientNet-B3** architecture, this model achieves **94.8% test accuracy** and is optimized for deployment in resource-constrained AgTech environments (e.g., mobile edge devices).
 
-![Screenshot (124)](https://github.com/user-attachments/assets/15f82d7f-cbb9-4cbb-8648-b41dc077bb23)
+**🔗 [Download Pre-trained Weights (Hugging Face)](https://huggingface.co/VisionaryQuant/5_Crop_Disease_Detection/tree/main)**
 
-   - Epochs: 50 (Early stopping at epoch 29)
-   - Cross-validation: 5 folds
-   - Framework: PyTorch
-- Performance:
+---
 
-![Screenshot (125)](https://github.com/user-attachments/assets/4fcc8920-f028-4a68-8f36-4fba75b1dcee)
+## 📊 Model Performance
 
-   - Accuracy: 94.8%
-   - Precision: 95.4%
-   - Recall: 94.5%
-   - F1 Score: 94.8%
-- Evaluation Metrics:
-   - Confusion matrix revealed minimal class-wise misclassification.
-   - Classification report and confusion matrix visualizations were generated.
-  
-![download](https://github.com/user-attachments/assets/a71af97f-89da-49e5-a274-5d54fd4440ef)
+| Metric | Score | Notes |
+| :--- | :--- | :--- |
+| **Accuracy** | **94.8%** | Tested on 2,600+ unseen validation images |
+| **Precision** | 95.4% | Minimizes false positives |
+| **Recall** | 94.5% | Minimizes missed disease detection |
+| **Inference Time** | ~45ms | Tested on standard GPU |
 
-## 🔹 Model Summary
+### ⚠️ Constraints & Known Limitations
+While the model achieves **99-100% accuracy** on distinct classes (e.g., *Corn Rust*, *Potato Early Blight*), it faces challenges with:
+* **Rice Brown Spot vs. Rice Leaf Blast:** Due to high visual similarity (small brown lesions), confusion exists between these two classes (approx. 77% precision).
+* **Mitigation:** In production, this model should be paired with a secondary "Expert Model" specifically for Rice leaf pathology if higher granularity is required.
 
-![Screenshot (123)](https://github.com/user-attachments/assets/5d0797e8-e5ca-4568-85c1-a762339e130e)
+---
 
-- Total Parameters: 10,722,361
-- Input Size: 69.12 MB
-- Parameters Size: 42.54 MB
-- Total Estimated Size: 12,312.78 MB
+## 🛠️ Technical Implementation
 
-## 🔹 Real-World Applications
-- Smart Farming: On-field disease detection via mobile or drone-based imaging.
-- Crop Monitoring: Scalable disease surveillance across regions.
-- Yield Optimization: Early intervention leads to reduced losses and improved yield.
+* **Architecture:** EfficientNet-B3 (Pre-trained on ImageNet).
+* **Modifications:** Custom fully connected head (1536 inputs → 17 outputs).
+* **Input Resolution:** 300x300 pixels.
+* **Augmentation:** RandomRotation, HorizontalFlip, ColorJitter (to simulate field lighting).
 
-## 🔹 Impacts
-- Food Security: Enables farmers to proactively manage crop health, reducing crop loss.
-- Sustainable Agriculture: Promotes efficient use of agrochemicals.
-- Market Efficiency: Reduces post-harvest losses, benefiting supply chains and economies.
+---
+
+## 🚀 How to Run Inference
+
+**1. Setup Environment**
+- #### Clone the Git Repo
+```bash
+git clone https://github.com/abdulmumeen-abdullahi/Crop-Disease-Identification-and-Classification.git
+```
+- #### Go to the project git folder
+```
+cd crop-disease-detection
+```
+- #### Install the requirements
+```
+pip install -r requirements.txt
+```
+
+**2. Download Weights**
+Download `best_crop_disease_model.pt` from my [Hugging Face Repository](https://huggingface.co/VisionaryQuant/5_Crop_Disease_Detection/tree/main) and place it in the root directory.
+
+**3. Run Prediction (Python Snippet)**
+Since the repository currently focuses on the training notebook, use this script to load the model for inference:
+
+```python
+import torch
+from torchvision import models
+import torch.nn as nn
+from PIL import Image
+from torchvision import transforms
+```
+
+**4. Define Architecture**
+```
+def get_model():
+    model = models.efficientnet_b3(weights=None)
+    # Re-create the classifier head to match training
+    model.classifier[1] = nn.Linear(1536, 17) 
+    return model
+```
+
+**5. Load Weights**
+```
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model = get_model()
+model.load_state_dict(torch.load('best_crop_disease_model.pt', map_location=device))
+model.eval()
+```
+
+# 6. Preprocess & Predict
+```
+def predict(image_path):
+    transform = transforms.Compose([
+        transforms.Resize((300, 300)),
+        transforms.ToTensor(),
+        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+    ])
+    
+    img = Image.open(image_path).convert("RGB")
+    img_tensor = transform(img).unsqueeze(0)
+    
+    with torch.no_grad():
+        outputs = model(img_tensor)
+        _, predicted = torch.max(outputs, 1)
+        
+    return predicted.item()
+```
+
+**Example Usage**
+```
+print(f"Predicted Class ID: {predict('test_leaf.jpg')}")
+```
+
+## 📂 Repository Structure
+
+```text
+├── crop-disease-detection.ipynb   # Full training pipeline (Data loading, Training, Eval)
+├── requirements.txt               # Dependencies (torch, torchvision, pillow, etc.)
+└── README.md                      # Documentation
+```
+
+## Impact
+This model was developed to support UN SDG 2 (Zero Hunger) by enabling early intervention in crop disease management. It serves as the vision backend for the FarmConsultAI platform.
