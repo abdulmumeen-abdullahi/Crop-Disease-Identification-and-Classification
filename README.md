@@ -2,6 +2,8 @@
 
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white) ![Hugging Face](https://img.shields.io/badge/Model_Weights-Hugging_Face-yellow?style=for-the-badge&logo=huggingface) ![Accuracy](https://img.shields.io/badge/Accuracy-94.8%25-success?style=for-the-badge) ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
+**Dataset**: [https://www.kaggle.com](https://www.kaggle.com/datasets/shubham2703/five-crop-diseases-dataset)
+
 ## 📋 Executive Summary
 This repository contains the training pipeline and inference logic for a **computer vision model** designed to detect 17 different crop diseases across 5 major food crops (Wheat, Sugarcane, Corn, Rice, Potato).
 
